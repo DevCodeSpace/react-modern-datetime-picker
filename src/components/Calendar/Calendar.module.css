@@ -1,0 +1,779 @@
+/* ─────────────────────────────────────────────────────────
+   react-modern-datetime-picker  |  Light Theme
+   Professional · Clean · Corporate
+───────────────────────────────────────────────────────── */
+
+:root {
+  --cal-font:
+    -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --cal-radius-sm: 6px;
+  --cal-radius-md: 10px;
+  --cal-radius-lg: 14px;
+  --cal-radius-xl: 18px;
+  --cal-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.06),
+    0 16px 40px rgba(0, 0, 0, 0.1);
+  --cal-transition: 0.16s ease;
+}
+
+/* ─── Wrapper ─────────────────────────────────────────── */
+
+.container {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  font-family: var(--cal-font);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ─── Input Field ─────────────────────────────────────── */
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.dateInput {
+  padding: 9px 14px;
+  border: 1.5px solid var(--border-color, #e5e7eb);
+  border-radius: var(--cal-radius-md);
+  font-size: 14px;
+  cursor: pointer;
+  background: var(--background-color, #fff);
+  color: var(--text-color, #111827);
+  width: 100%;
+  font-family: var(--cal-font);
+  transition:
+    border-color var(--cal-transition),
+    box-shadow var(--cal-transition);
+}
+
+.defaultInput {
+  height: 40px;
+  padding-right: 40px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: var(--cal-radius-md);
+  font-size: 14px;
+  font-weight: 400;
+  color: #111827;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition:
+    border-color var(--cal-transition),
+    box-shadow var(--cal-transition);
+}
+
+.defaultInput::placeholder {
+  color: #9ca3af;
+}
+
+.defaultInput:hover:not(:disabled) {
+  border-color: #d1d5db;
+}
+
+.defaultInput:focus {
+  outline: none;
+  border-color: var(--primary-color, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.dateInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  background: #f9fafb;
+}
+
+.icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: #9ca3af;
+}
+
+.iconLeft {
+  left: 12px;
+}
+.iconRight {
+  right: 12px;
+}
+.hasLeftIcon {
+  padding-left: 38px !important;
+}
+.hasRightIcon {
+  padding-right: 38px !important;
+}
+
+/* ─── Backdrop ────────────────────────────────────────── */
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index, 1000);
+}
+
+/* ─── Modal Card ──────────────────────────────────────── */
+
+.modalContent {
+  position: absolute;
+  background: #ffffff;
+  border-radius: var(--cal-radius-xl);
+  box-shadow: var(--cal-shadow);
+  border: 1px solid #f1f1f1;
+  padding: 16px;
+  min-width: 272px;
+  z-index: calc(var(--z-index, 1000) + 1);
+  overflow: hidden;
+}
+
+.modalContent[data-variant="time"] {
+  min-width: 448px !important;
+  width: 448px !important;
+}
+
+.modalContent[data-variant="default"],
+.modalContent[data-variant="range"],
+.modalContent[data-variant="multi"] {
+  width: fit-content;
+}
+
+.contentWrapper {
+  display: block;
+}
+
+.timeLayout {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* ─── Header ──────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 12px;
+}
+
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.headerButton {
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: #9ca3af;
+  border-radius: var(--cal-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--cal-transition),
+    color var(--cal-transition);
+  flex-shrink: 0;
+}
+
+.headerButton:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.selectContainer {
+  position: relative;
+}
+
+.headerSelect {
+  background: none;
+  border: none;
+  padding: 5px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  border-radius: var(--cal-radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--cal-font);
+  letter-spacing: -0.02em;
+  transition: background var(--cal-transition);
+}
+
+.headerSelect:hover {
+  background: #f3f4f6;
+}
+
+/* ─── Dropdowns ───────────────────────────────────────── */
+
+.selectDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--cal-radius-md);
+  padding: 4px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 128px;
+
+  /* Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb transparent;
+}
+
+.selectDropdown::-webkit-scrollbar {
+  width: 4px;
+}
+.selectDropdown::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 4px;
+}
+
+.yearDropdown {
+  min-width: 76px;
+}
+
+.selectOption {
+  background: none;
+  border: none;
+  padding: 7px 12px;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+  border-radius: var(--cal-radius-sm);
+  text-align: left;
+  font-family: var(--cal-font);
+  transition:
+    background var(--cal-transition),
+    color var(--cal-transition);
+  white-space: nowrap;
+}
+
+.selectOption:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.selectOption.selected {
+  background: var(--primary-color, #6366f1);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.rotated {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+}
+
+/* ─── Grid ────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 34px);
+  gap: 2px;
+  padding: 0 2px;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.dayLabel {
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dayCell {
+  height: 34px;
+  width: 34px;
+  border: none;
+  border-radius: var(--cal-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  color: #374151;
+  font-family: var(--cal-font);
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  transition:
+    background var(--cal-transition),
+    color var(--cal-transition);
+  position: relative;
+}
+
+.dayCell:hover:not(.faded):not(:disabled) {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* Today */
+.today {
+  color: var(--primary-color, #6366f1);
+  font-weight: 700;
+}
+
+.today::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--primary-color, #6366f1);
+}
+
+/* Selected */
+.selected {
+  background: var(--primary-color, #6366f1) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: var(--cal-radius-sm);
+}
+
+.selected.today::after {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Range fill */
+.inRange {
+  background: color-mix(
+    in srgb,
+    var(--primary-color, #6366f1) 10%,
+    transparent
+  );
+  color: var(--primary-color, #6366f1);
+  border-radius: 0;
+  font-weight: 500;
+}
+
+/* Disabled / other month */
+.faded {
+  color: #d1d5db;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ─── Time Picker ─────────────────────────────────────── */
+
+.timePicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-left: 1px solid #f3f4f6;
+  min-width: 182px;
+}
+
+.timeSection {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.timeColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeText {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111827;
+  width: 44px;
+  text-align: center;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: #f9fafb;
+  border-radius: var(--cal-radius-sm);
+  padding: 6px 4px;
+}
+
+.timeSeparator {
+  font-size: 22px;
+  font-weight: 700;
+  color: #d1d5db;
+  padding: 0 2px;
+  padding-top: 26px;
+  line-height: 1;
+}
+
+.timeButton {
+  background: none;
+  border: none;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  color: #9ca3af;
+  border-radius: var(--cal-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--cal-transition),
+    color var(--cal-transition);
+}
+
+.timeButton:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.ampmToggle {
+  position: relative;
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 3px;
+  display: flex;
+  width: 92px;
+}
+
+.ampmSlider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 4px);
+  height: calc(100% - 6px);
+  background: var(--primary-color, #6366f1);
+  border-radius: 16px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.ampmSlider[data-am="false"] {
+  transform: translateX(calc(100% + 2px));
+}
+
+.ampmButton {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  color: #9ca3af;
+  font-family: var(--cal-font);
+  transition: color 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.ampmButton.active {
+  color: #ffffff;
+}
+
+/* ─── Actions Bar ─────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.clear {
+  height: 34px;
+  padding: 0 16px;
+  border-radius: var(--cal-radius-sm);
+  border: 1.5px solid #e5e7eb;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  background: transparent;
+  font-family: var(--cal-font);
+  transition: all var(--cal-transition);
+}
+
+.clear:hover {
+  border-color: #d1d5db;
+  color: #374151;
+  background: #f9fafb;
+}
+
+.confirm {
+  height: 34px;
+  padding: 0 20px;
+  border-radius: var(--cal-radius-sm);
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--primary-color, #6366f1);
+  font-family: var(--cal-font);
+  transition:
+    opacity var(--cal-transition),
+    transform var(--cal-transition);
+}
+
+.confirm:hover {
+  opacity: 0.88;
+}
+.confirm:active {
+  opacity: 1;
+  transform: scale(0.97);
+}
+
+/* ─── Animations ──────────────────────────────────────── */
+
+.slideIn {
+  animation: dropIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.slideOut {
+  animation: dropOut 0.14s ease-in both;
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dropOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+}
+
+/* ─── Range Options Panel ─────────────────────────────── */
+
+.modalWithOptions {
+  display: flex;
+  width: auto !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  gap: 8px;
+}
+
+.calendarContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.calendarMain {
+  background: #ffffff;
+  border-radius: var(--cal-radius-xl);
+  border: 1px solid #f1f1f1;
+  box-shadow: var(--cal-shadow);
+  padding: 16px;
+  min-width: 272px;
+}
+
+.rangeOptions {
+  background: #ffffff;
+  border-radius: var(--cal-radius-lg);
+  border: 1px solid #f1f1f1;
+  box-shadow: var(--cal-shadow);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: fit-content;
+  min-width: 148px;
+}
+
+.rangeOptionsTitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: #9ca3af;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px 6px;
+}
+
+.rangeOptionButton {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #374151;
+  cursor: pointer;
+  border-radius: var(--cal-radius-sm);
+  text-align: left;
+  font-family: var(--cal-font);
+  transition:
+    background var(--cal-transition),
+    color var(--cal-transition);
+}
+
+.rangeOptionButton:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.rangeOptionSelected {
+  background: color-mix(
+    in srgb,
+    var(--primary-color, #6366f1) 10%,
+    transparent
+  );
+  color: var(--primary-color, #6366f1);
+  font-weight: 600;
+}
+
+/* ─── Mobile ──────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .modalContent {
+    margin: 16px;
+    width: calc(100% - 32px) !important;
+    max-width: 320px !important;
+    min-width: auto !important;
+    padding: 14px;
+    border-radius: var(--cal-radius-lg);
+  }
+
+  .modalContent[data-variant="time"] {
+    width: calc(100% - 32px) !important;
+    min-width: auto !important;
+    max-width: 340px !important;
+  }
+
+  .grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    max-width: 300px;
+    margin: 0 auto 4px;
+  }
+
+  .dayCell {
+    height: 34px;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .timeLayout {
+    flex-direction: column;
+  }
+
+  .timePicker {
+    border-left: none;
+    border-top: 1px solid #f3f4f6;
+    width: 100%;
+    min-width: auto;
+    padding: 14px 0;
+  }
+
+  .modalBackdrop {
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .contentWrapper {
+    width: 100%;
+  }
+  .actions {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  .timeSection {
+    width: 100%;
+    justify-content: center;
+  }
+  .ampmToggle {
+    width: 108px;
+  }
+}
+
+@media (max-width: 360px) {
+  .modalContent {
+    margin: 8px;
+    width: calc(100% - 16px) !important;
+    padding: 10px;
+  }
+  .dayCell {
+    height: 30px;
+    font-size: 12px;
+  }
+  .dayLabel {
+    height: 22px;
+    line-height: 22px;
+    font-size: 10px;
+  }
+}
+
+/* ─── Placement helpers ───────────────────────────────── */
+
+.modalContent[data-placement="top"] {
+  bottom: 100%;
+  margin-bottom: 8px;
+}
+.modalContent[data-placement="bottom"] {
+  top: 100%;
+  margin-top: 8px;
+}
+.modalContent[data-placement="left"] {
+  right: 100%;
+  margin-right: 8px;
+}
+.modalContent[data-placement="right"] {
+  left: 100%;
+  margin-left: 8px;
+}
