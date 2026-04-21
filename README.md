@@ -24,31 +24,31 @@ Built with TypeScript · Zero runtime dependencies · Fully themeable · Product
 
 ### Default Date Picker
 
-<img src="./public/screenshots/01-default-input.png" width="320" alt="Default input" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/01-default-input.png" width="320" alt="Default input" />
 &nbsp;&nbsp;
-<img src="./public/screenshots/02-default-open.png" width="320" alt="Default calendar open" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/02-default-open.png" width="320" alt="Default calendar open" />
 
 ### Selected Date · Date Picker
 
-<img src="./public/screenshots/03-default-selected.png" width="320" alt="Date selected" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/03-default-selected.png" width="320" alt="Date selected" />
 
 ### Year & Month Dropdowns
 
-<img src="./public/screenshots/04-year-dropdown.png" width="320" alt="Year dropdown" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/04-year-dropdown.png" width="320" alt="Year dropdown" />
 &nbsp;&nbsp;
-<img src="./public/screenshots/05-month-dropdown.png" width="320" alt="Month dropdown" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/05-month-dropdown.png" width="320" alt="Month dropdown" />
 
 ### Time Picker
 
-<img src="./public/screenshots/06-variant-selector.png" width="320" alt="Variant selector" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/06-variant-selector.png" width="320" alt="Variant selector" />
 &nbsp;&nbsp;
-<img src="./public/screenshots/07-time-picker.png" width="480" alt="Time picker" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/07-time-picker.png" width="480" alt="Time picker" />
 
 ### Date Range · Multi-Select
 
-<img src="./public/screenshots/08-date-range.png" width="320" alt="Date range picker" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/08-date-range.png" width="320" alt="Date range picker" />
 &nbsp;&nbsp;
-<img src="./public/screenshots/09-multi-select.png" width="320" alt="Multi-select calendar" />
+<img src="https://raw.githubusercontent.com/DevCodeSpace/react-modern-datetime-picker/refs/heads/main/public/screenshots/09-multi-select.png" width="320" alt="Multi-select calendar" />
 
 </div>
 
