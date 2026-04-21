@@ -1,6 +1,6 @@
 {
   "name": "react-modern-datetime-picker",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "A modern, customizable React calendar & datetime picker with date range, multi-select, and time picker support",
   "type": "module",
   "main": "./dist/react-modern-datetime-picker.umd.cjs",
